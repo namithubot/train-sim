@@ -47,6 +47,12 @@ export class SimulatorTrain {
      * @param location Destination station
      */
     public go(location: number): void {
+        // Note: If the train is running. Keep it running irrespective of the
+        // Current value. We don't want to stop the train in the middle of nowhere.
+        if (location < 1) {
+            console.error('ERROR That station does not exists.');
+        }
+
         if (!this.intervalId) {
             clearInterval(this.intervalId);
             this.intervalId = undefined;

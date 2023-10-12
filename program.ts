@@ -82,6 +82,10 @@ export abstract class Program {
      * @param val The value provided to be set.
      */
     private static setValue(setType: SetType, val: number): void {
+        if (!Program.validateSet(setType, val)) {
+            console.error('ERROR I am not sure about that value. Can you review it?');
+        }
+
         switch (setType) {
             case SetType.Rate: Program.currentPhase === Phases.Setup
                 ? Program.rate = val : Program.train.updateRate(val); break;
@@ -101,6 +105,22 @@ export abstract class Program {
                 }
                 break;
             default: console.error('ERROR I did not understand that. Cho! Cho!');
+        }
+    }
+
+    /**
+     * Validates the value to be set.
+     *
+     * @param setType The setType of the set operation.
+     * @param val Value to which the set operation is to be done.
+     * @returns True if valid.
+     */
+    private static validateSet(setType: SetType, val: number): boolean {
+        switch (setType) {
+            case SetType.Speed: return val >= 0;
+            case SetType.StartStation:
+            case SetType.Stations:
+                return val > 0;
         }
     }
 }
