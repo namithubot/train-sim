@@ -1,0 +1,11 @@
+{
+  "name": "trainsimulator",
+  "version": "1.0.0",
+  "description": "A Subway Simulator",
+  "main": "app.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "namithubot",
+  "license": "ISC"
+}
