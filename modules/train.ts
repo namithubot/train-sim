@@ -1,4 +1,5 @@
 import { SimulatorConfig } from "../models/config";
+import { Rate } from "../models/enums";
 
 /**
  * Class representing the train in our universe.

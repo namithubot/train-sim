@@ -1,15 +1,13 @@
 Project = "Train Simulator"
 
-clean_start: clean install start
+clean_start: clean build run
 
-start : ;@echo "Starting ${PROJECT}....."; \
-	npm run start
+run : ;npm run start
 
-install: ;@echo "Installing Dependencies"; \
-	npm install
+build: ;npm install
 
 clean : ;
 	rm -rf node_modules
 
 
-.PHONY: clean install start
+.PHONY: clean build run

@@ -11,12 +11,12 @@ Make sure that you have that installed.
 ## Install dependencies (Required for the first time)
 
 To install  
-Use makefile: `make install`  
+Use makefile: `make build`  
 Use npm: `npm install`  
 
 ## Launch the simulator
 
-Make: `make start`  
+Make: `make run`  
 npm: `npm run start`  
 
 

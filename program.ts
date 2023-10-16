@@ -1,6 +1,8 @@
 import { exit } from "process";
 import { SimulatorConfig } from "./models/config";
 import { SimulatorTrain } from "./modules/train";
+import { Rate, Phases, SetType } from "./models/enums";
+
 
 /**
  * The program class to run Program application.
@@ -56,7 +58,7 @@ export abstract class Program {
         }
         switch (cmd[0]) {
             case 'stop': exit(0);
-            case 'set': Program.setValue(cmd[1] as SetType, parseInt(cmd[2])); break;
+            case 'set': Program.setValue(cmd[1] as SetType, parseFloat(cmd[2])); break;
             case 'start': Program.currentPhase === Phases.Setup
                 ? Program.startTrain() : console.error('ERROR Already started!'); break;
             case 'goto': Program.currentPhase === Phases.Setup
@@ -95,11 +97,11 @@ export abstract class Program {
                 break;
             case SetType.StartStation: Program.currentPhase === Phases.Setup
                 && val > 0 && val < Program.stationCount
-                ? Program.startLocation = val : console.error('ERROR I do not recognize that station. Is it within premises?');
+                ? Program.startLocation = Math.floor(val): console.error('ERROR I do not recognize that station. Is it within premises?');
                 break;
             case SetType.Stations:
                 if (Program.currentPhase === Phases.Setup) {
-                    Program.stationCount = val; console.log('STATION ' + val);
+                    Program.stationCount = Math.floor(val); console.log('STATION ' + val);
                 } else {
                     console.error('ERROR Train has already left the yard');
                 }
@@ -121,6 +123,9 @@ export abstract class Program {
             case SetType.StartStation:
             case SetType.Stations:
                 return val > 0;
+            case SetType.Rate:
+                console.log(val);
+                return Object.values(Rate).includes(val);
         }
     }
 }
