@@ -5,11 +5,11 @@ import { Program } from './program';
 /**
  * The main function is the starting point of the program.
  */
-(async function main() {;
+(async function main() {
     const line = readLine.createInterface(stdin, stdout);
     console.info('Hello there!\nWelcome to the subway simulator\n');
     while (true) {
-        const command = await line.question('Enter You Commnad Here > ');
-        Program.processCommand(command)
+        const command = await line.question('Enter You Command Here > ');
+        Program.processCommand(command);
     }
 }) ();
